@@ -1,4 +1,4 @@
-#coding:utf-8
+# -*- coding: utf-8 -*-
 
 import hashlib
 import web
@@ -17,10 +17,10 @@ class Handle(object):
             #公众号设置    
             token = "mytoken"
 
-            data_list = [token,timestamp,nonce]
+            data_list = [token.encode("utf-8"),timestamp.encode("utf-8"),nonce.encode("utf-8")]
             data_list.sort()
             sha1 = hashlib.sha1()
-            map(sha1.update,data_list)
+            list(map(sha1.update,data_list))
             hashcode = sha1.hexdigest()
             print("[debug] handle/GET hashcode,signature:",hashcode,signature)
             if hashcode == signature:
